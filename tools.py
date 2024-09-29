@@ -39,5 +39,30 @@ def check_seed(list_words: Union[List[str], str]) -> bool:
    return hash_bin == key_hash_bin[0:len(hash_bin)]
 
 
+def obfs(list_words: List[str]) -> Union[List[str], None]:
+   if not check_seed(list_words=list_words):
+      return None
+   
+   list_int = [bip39.get_index(word) for word in list_words]
+   key = list_int[-1]
+   list_obfs = [(word_num ^ key) for word_num in list_int]
+   list_obfs[-1] = key
+
+   return [bip39.get_word(word_num) for word_num in list_obfs]
+
+
+def deobfs(list_words: List[str]) -> Union[List[str], None]:
+   for word in list_words:
+      if word not in bip39._dict:
+         return None
+
+   list_int = [bip39.get_index(word) for word in list_words]
+   key = list_int[-1]
+   list_deobfs = [(word_num ^ key) for word_num in list_int]
+   list_deobfs[-1] = key
+
+   return [bip39.get_word(word_num) for word_num in list_deobfs]
+
+
 if __name__ == "__main__":
    pass

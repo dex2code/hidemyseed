@@ -1,12 +1,11 @@
 from seed import Seed
+from tools import deobfs
 
 seed = Seed()
+print(seed.seed_str_words)
+print(seed.seed_str_obfs)
 
-print(
-   seed.seed_str_bin,
-   seed.seed_list_bin,
-   seed.seed_list_int,
-   seed.seed_list_words,
-   ' '.join(seed.seed_list_words),
-   sep='\n'
-)
+seed_deobfs = deobfs(list_words=seed.seed_list_obfs)
+
+seed = Seed(list_words=seed_deobfs)
+print(seed.seed_str_words)
