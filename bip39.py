@@ -274,6 +274,7 @@ class Bip39():
       Returns 0 if wrong word is given
       """
       try:
+         word = word.lower()
          assert (
             isinstance(word, str)
             and (word in self._dict)
@@ -295,7 +296,7 @@ class Bip39():
             and (index >= 0)
             and (index < len(self._dict))
          )
-         word = str(self._dict[index])
+         word = str(self._dict[index]).lower()
       except BaseException:
          return ""
       else:

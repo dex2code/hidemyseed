@@ -5,6 +5,8 @@ from hashlib import sha256
 from bip39 import Bip39
 bip39 = Bip39()
 
+import app_config
+
 
 def check_seed(list_words: Union[List[str], str]) -> bool:
    if isinstance(list_words, str):
@@ -13,7 +15,7 @@ def check_seed(list_words: Union[List[str], str]) -> bool:
    if not isinstance(list_words, list):
       return False
    
-   if len(list_words) not in [12, 24]:
+   if len(list_words) not in app_config.seed_words_len:
       return False
 
    list_words = [word.lower() for word in list_words]

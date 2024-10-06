@@ -1,11 +1,11 @@
 from seed import Seed
 from tools import deobfs
 
-seed = Seed()
-print(seed.seed_str_words)
-print(seed.seed_str_obfs)
+seed_phrase = "near appear sure fix basket direct fat riot stone vapor sugar tip"
+seed_obj = Seed(list_words=seed_phrase)
 
-seed_deobfs = deobfs(list_words=seed.seed_list_obfs)
+print(f"Init Seed: {seed_obj.seed_list_words}")
+print(f"Obfuscated Seed: {seed_obj.seed_list_obfs}")
 
-seed = Seed(list_words=seed_deobfs)
-print(seed.seed_str_words)
+deobfs_seed = deobfs(list_words=seed_obj.seed_list_obfs)
+print(f"Deobfuscated Seed: {deobfs_seed}")
